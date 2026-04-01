@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common'
-import { RegisterDTO } from './dto/register-auth.dto'
+import { LoginAuthDTO } from './dto/login-auth.dto'
+import { RegisterAuthDTO } from './dto/register-auth.dto'
 
 @Injectable()
 export class AuthService {
-    register(registerDTO: RegisterDTO) {
-        return registerDTO
-    }
+    constructor() {}
 
-    login(loginDTO: any) {
-        return loginDTO
-    }
+    async register(registerAuthDTO: RegisterAuthDTO) {}
+
+    async login(loginAuthDTO: LoginAuthDTO) {}
 }

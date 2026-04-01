@@ -6,7 +6,7 @@ import {
     MinLength
 } from 'class-validator'
 
-enum AccountType {
+export enum AccountType {
     DOCTOR = 'DOCTOR',
     PATIENT = 'PATIENT'
 }
