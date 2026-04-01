@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common'
 import { AuthModule } from './auth/auth.module'
-import { JwtModule } from '@nestjs/jwt'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
     imports: [
         AuthModule,
-        JwtModule.register({
-            secret: process.env.JWT_SECRET,
-            signOptions: { expiresIn: '1d' }
+        TypeOrmModule.forRoot({
+            type: 'postgres',
+            database: process.env.DATABASE,
+            synchronize: process.env.SYNCHRONIZE === '1',
+            autoLoadEntities: process.env.AUTO_LOAD_ENTITIES === '1'
         })
     ]
 })
