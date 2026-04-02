@@ -24,14 +24,14 @@ export class AuthService {
 
             const payload = { sub: doctor.id, email: doctor.email }
 
-            return payload
+            return this.jwtService.sign(payload)
         }
 
         const patient = await this.patientService.create(userData)
 
         const payload = { sub: patient.id, email: patient.email }
 
-        return payload
+        return this.jwtService.sign(payload)
     }
 
     async login(loginAuthDTO: LoginAuthDTO) {}
