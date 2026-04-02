@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common'
+import {
+    BadRequestException,
+    Injectable,
+    NotFoundException
+} from '@nestjs/common'
 import { LoginAuthDTO } from './dto/login-auth.dto'
 import { AccountType, RegisterAuthDTO } from './dto/register-auth.dto'
 import { JwtService } from '@nestjs/jwt'
@@ -34,5 +38,28 @@ export class AuthService {
         return this.jwtService.sign(payload)
     }
 
-    async login(loginAuthDTO: LoginAuthDTO) {}
+    async login(loginAuthDTO: LoginAuthDTO) {
+        const email = loginAuthDTO.email
+
+        const user =
+            (await this.doctorService.findByEmail(email)) ||
+            (await this.patientService.findByEmail(email))
+
+        if (!user) {
+            throw new NotFoundException('User not found')
+        }
+
+        const isMatch = this.hashService.compare(
+            loginAuthDTO.password,
+            user.password
+        )
+
+        if (!isMatch) {
+            throw new BadRequestException('Incorrect password')
+        }
+
+        const payload = { sub: user.id, email: user.email }
+
+        return this.jwtService.sign(payload)
+    }
 }

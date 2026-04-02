@@ -16,6 +16,9 @@ export class Doctor {
     email: string
 
     @Column()
+    password: string
+
+    @Column()
     phoneNumber: string
 
     @Column()

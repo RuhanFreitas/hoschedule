@@ -16,4 +16,10 @@ export class DoctorService {
 
         return doctor
     }
+
+    async findByEmail(email: string) {
+        const doctor = await this.doctorRepository.findOneBy({ email: email })
+
+        return doctor
+    }
 }

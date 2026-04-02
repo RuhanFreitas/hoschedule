@@ -12,4 +12,10 @@ export class PatientService {
 
         return patient
     }
+
+    async findByEmail(email: string) {
+        const patient = await this.patientRepository.findOneBy({ email: email })
+
+        return patient
+    }
 }
