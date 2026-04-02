@@ -1,6 +1,7 @@
 import {
     IsEmail,
     IsEnum,
+    IsOptional,
     IsPhoneNumber,
     IsString,
     MinLength
@@ -9,6 +10,19 @@ import {
 export enum AccountType {
     DOCTOR = 'DOCTOR',
     PATIENT = 'PATIENT'
+}
+
+export enum Speciality {
+    CARDIOLOGY = 'CARDIOLOGY',
+    DERMATOLOGY = 'DERMATOLOGY',
+    NEUROLOGY = 'NEUROLOGY',
+    PEDIATRICS = 'PEDIATRICS',
+    PSYCHIATRY = 'PSYCHIATRY',
+    ONCOLOGY = 'ONCOLOGY',
+    ORTHOPEDICS = 'ORTHOPEDICS',
+    GYNECOLOGY = 'GYNECOLOGY',
+    OPHTHALMOLOGY = 'OPHTHALMOLOGY',
+    GENERAL_SURGERY = 'GENERAL SURGERY'
 }
 
 export class RegisterAuthDTO {
@@ -30,4 +44,8 @@ export class RegisterAuthDTO {
 
     @IsEnum(AccountType)
     accountType: AccountType
+
+    @IsOptional()
+    @IsEnum(Speciality)
+    speciality: Speciality
 }
