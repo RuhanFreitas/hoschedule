@@ -1,10 +1,9 @@
-import { Speciality } from 'src/auth/dto/register-auth.dto'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
-export class Doctor {
+export class Patient {
     @PrimaryGeneratedColumn()
-    id: number
+    id: string
 
     @Column()
     firstName: string
@@ -17,7 +16,4 @@ export class Doctor {
 
     @Column()
     phoneNumber: string
-
-    @Column()
-    speciality: Speciality
 }

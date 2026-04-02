@@ -1,4 +1,11 @@
-import { IsEmail, IsPhoneNumber, IsString, MinLength } from 'class-validator'
+import {
+    IsEmail,
+    IsEnum,
+    IsPhoneNumber,
+    IsString,
+    MinLength
+} from 'class-validator'
+import { Speciality } from 'src/auth/dto/register-auth.dto'
 
 export class CreateDoctorDTO {
     @IsString()
@@ -16,4 +23,7 @@ export class CreateDoctorDTO {
 
     @IsPhoneNumber('BR')
     phoneNumber: string
+
+    @IsEnum(Speciality)
+    speciality: Speciality
 }
