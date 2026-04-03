@@ -1,5 +1,11 @@
 import { Speciality } from 'src/auth/dto/register-auth.dto'
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from 'typeorm'
 
 @Entity()
 export class Doctor {
@@ -23,4 +29,10 @@ export class Doctor {
 
     @Column()
     speciality: Speciality
+
+    @CreateDateColumn()
+    createdAt: Date
+
+    @UpdateDateColumn()
+    updatedAt: Date
 }
